@@ -19,7 +19,7 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-
+gem 'bcrypt', '~> 3.1.11'
 gem 'coffee-script-source', '1.8.0'
 
 
@@ -32,8 +32,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
+#gem 'bcrypt', '3.1.11', platforms: [:ruby, :x64_mingw]
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

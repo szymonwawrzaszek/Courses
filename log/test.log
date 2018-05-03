@@ -1,0 +1,314 @@
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (173.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (210.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateStudents (20180226205303)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "given_name" varchar, "middle_name" varchar, "family_name" varchar, "date_of_birth" date, "grade_point_average" decimal, "start_date" date, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180226205303"]]
+  [1m[35m (230.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAwards (20180226205327)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (10.0ms)[0m  [1m[35mCREATE TABLE "awards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "year" integer, "student_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180226205327"]]
+  [1m[35m (140.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateCourses (20180305193322)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (10.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180305193322"]]
+  [1m[35m (210.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateCoursesStudents (20180305193335)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (10.0ms)[0m  [1m[35mCREATE TABLE "courses_students" ("course_id" integer NOT NULL, "student_id" integer NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_courses_students_on_course_id_and_student_id" ON "courses_students" ("course_id", "student_id")[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180305193335"]]
+  [1m[35m (170.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (10.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "test"], ["created_at", "2018-03-31 17:11:42.920339"], ["updated_at", "2018-03-31 17:11:42.920339"]]
+  [1m[35m (130.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_courses_students_on_course_id_and_student_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_courses_students_on_course_id_and_student_id' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (10.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.0ms)[0m  [1m[31mDELETE FROM "awards"[0m
+  [1m[36mFixture Insert (0.0ms)[0m  [1m[32mINSERT INTO "awards" ("name", "year", "student_id", "created_at", "updated_at", "id") VALUES ('MyString', 1, 1, '2018-03-31 17:48:42.615766', '2018-03-31 17:48:42.615766', 980190962)[0m
+  [1m[36mFixture Insert (0.0ms)[0m  [1m[32mINSERT INTO "awards" ("name", "year", "student_id", "created_at", "updated_at", "id") VALUES ('MyString', 1, 1, '2018-03-31 17:48:42.615766', '2018-03-31 17:48:42.615766', 298486374)[0m
+  [1m[36mFixture Delete (0.0ms)[0m  [1m[31mDELETE FROM "courses"[0m
+  [1m[36mFixture Insert (0.0ms)[0m  [1m[32mINSERT INTO "courses" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2018-03-31 17:48:42.615766', '2018-03-31 17:48:42.615766', 980190962)[0m
+  [1m[36mFixture Insert (0.0ms)[0m  [1m[32mINSERT INTO "courses" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2018-03-31 17:48:42.615766', '2018-03-31 17:48:42.615766', 298486374)[0m
+  [1m[36mFixture Delete (0.0ms)[0m  [1m[31mDELETE FROM "students"[0m
+  [1m[36mFixture Insert (0.0ms)[0m  [1m[32mINSERT INTO "students" ("given_name", "middle_name", "family_name", "date_of_birth", "grade_point_average", "start_date", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', '2018-02-26', 9.99, '2018-02-26', '2018-03-31 17:48:42.625769', '2018-03-31 17:48:42.625769', 980190962)[0m
+  [1m[36mFixture Insert (0.0ms)[0m  [1m[32mINSERT INTO "students" ("given_name", "middle_name", "family_name", "date_of_birth", "grade_point_average", "start_date", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', '2018-02-26', 9.99, '2018-02-26', '2018-03-31 17:48:42.625769', '2018-03-31 17:48:42.625769', 298486374)[0m
+  [1m[35m (110.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+----------------------------------------------
+AwardsControllerTest: test_should_create_award
+----------------------------------------------
+  [1m[36mAward Load (0.0ms)[0m  [1m[34mSELECT  "awards".* FROM "awards" WHERE "awards"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "awards"[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+----------------------------------------------
+AwardsControllerTest: test_should_update_award
+----------------------------------------------
+  [1m[36mAward Load (0.0ms)[0m  [1m[34mSELECT  "awards".* FROM "awards" WHERE "awards"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+-------------------------------------------
+AwardsControllerTest: test_should_get_index
+-------------------------------------------
+  [1m[36mAward Load (0.0ms)[0m  [1m[34mSELECT  "awards".* FROM "awards" WHERE "awards"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+-----------------------------------------------
+AwardsControllerTest: test_should_destroy_award
+-----------------------------------------------
+  [1m[36mAward Load (0.0ms)[0m  [1m[34mSELECT  "awards".* FROM "awards" WHERE "awards"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "awards"[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------
+AwardsControllerTest: test_should_show_award
+--------------------------------------------
+  [1m[36mAward Load (0.0ms)[0m  [1m[34mSELECT  "awards".* FROM "awards" WHERE "awards"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+-----------------------------------------
+AwardsControllerTest: test_should_get_new
+-----------------------------------------
+  [1m[36mAward Load (10.0ms)[0m  [1m[34mSELECT  "awards".* FROM "awards" WHERE "awards"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------------------------
+AwardsControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[36mAward Load (0.0ms)[0m  [1m[34mSELECT  "awards".* FROM "awards" WHERE "awards"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------------
+StudentsControllerTest: test_should_create_student
+--------------------------------------------------
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "students"[0m
+Started POST "/students" for 127.0.0.1 at 2018-03-31 19:48:47 +0200
+Processing by StudentsController#create as HTML
+  Parameters: {"student"=>{"date_of_birth"=>"2018-02-26", "family_name"=>"MyString", "given_name"=>"MyString", "grade_point_average"=>"9.99", "middle_name"=>"MyString", "start_date"=>"2018-02-26"}}
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("given_name", "middle_name", "family_name", "date_of_birth", "grade_point_average", "start_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["given_name", "MyString"], ["middle_name", "MyString"], ["family_name", "MyString"], ["date_of_birth", "2018-02-26"], ["grade_point_average", 9.99], ["start_date", "2018-02-26"], ["created_at", "2018-03-31 17:48:47.998100"], ["updated_at", "2018-03-31 17:48:47.998100"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/students/980190963
+Completed 302 Found in 30ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "students"[0m
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" ORDER BY "students"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (10.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------------
+StudentsControllerTest: test_should_update_student
+--------------------------------------------------
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started PATCH "/students/980190962" for 127.0.0.1 at 2018-03-31 19:49:10 +0200
+Processing by StudentsController#update as HTML
+  Parameters: {"student"=>{"date_of_birth"=>"2018-02-26", "family_name"=>"MyString", "given_name"=>"MyString", "grade_point_average"=>"9.99", "middle_name"=>"MyString", "start_date"=>"2018-02-26"}, "id"=>"980190962"}
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/students/980190962
+Completed 302 Found in 60ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+---------------------------------------------------
+StudentsControllerTest: test_should_destroy_student
+---------------------------------------------------
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "students"[0m
+Started DELETE "/students/980190962" for 127.0.0.1 at 2018-03-31 19:49:10 +0200
+Processing by StudentsController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[31mDELETE FROM "awards" WHERE "awards"."student_id" = ?[0m  [["student_id", 980190962]]
+  [1m[35mSQL (0.0ms)[0m  [1m[31mDELETE FROM "courses_students" WHERE "courses_students"."student_id" = ?[0m  [["student_id", 980190962]]
+  [1m[35mSQL (10.0ms)[0m  [1m[31mDELETE FROM "students" WHERE "students"."id" = ?[0m  [["id", 980190962]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/students
+Completed 302 Found in 300ms (ActiveRecord: 10.0ms)
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "students"[0m
+  [1m[35m (10.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------
+StudentsControllerTest: test_should_get_edit
+--------------------------------------------
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/students/980190962/edit" for 127.0.0.1 at 2018-03-31 19:49:10 +0200
+Processing by StudentsController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering students/edit.html.erb within layouts/application
+  Rendered students/_form.html.erb (358.1ms)
+  Rendered students/edit.html.erb within layouts/application (478.1ms)
+  Rendered application/_navigation.html.erb (0.0ms)
+Completed 200 OK in 4269ms (Views: 4216.9ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+-------------------------------------------
+StudentsControllerTest: test_should_get_new
+-------------------------------------------
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/students/new" for 127.0.0.1 at 2018-03-31 19:49:14 +0200
+Processing by StudentsController#new as HTML
+  Rendering students/new.html.erb within layouts/application
+  Rendered students/_form.html.erb (10.0ms)
+  Rendered students/new.html.erb within layouts/application (10.0ms)
+  Rendered application/_navigation.html.erb (0.0ms)
+Completed 200 OK in 80ms (Views: 13.1ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------------------------------
+StudentsControllerTest: test_should_show_student
+------------------------------------------------
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/students/980190962" for 127.0.0.1 at 2018-03-31 19:49:14 +0200
+Processing by StudentsController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering students/show.html.erb within layouts/application
+  [1m[36mCourse Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "courses" INNER JOIN "courses_students" ON "courses"."id" = "courses_students"."course_id" WHERE "courses_students"."student_id" = ? LIMIT ?[0m  [["student_id", 980190962], ["LIMIT", 1]]
+  Rendered students/show.html.erb within layouts/application (130.0ms)
+  Rendered application/_navigation.html.erb (0.0ms)
+Completed 200 OK in 220ms (Views: 140.6ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+---------------------------------------------
+StudentsControllerTest: test_should_get_index
+---------------------------------------------
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/students" for 127.0.0.1 at 2018-03-31 19:49:15 +0200
+Processing by StudentsController#index as HTML
+  Rendering students/index.html.erb within layouts/application
+  [1m[36mStudent Load (10.0ms)[0m  [1m[34mSELECT "students".* FROM "students"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "awards" WHERE "awards"."student_id" = ?[0m  [["student_id", 298486374]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "courses" INNER JOIN "courses_students" ON "courses"."id" = "courses_students"."course_id" WHERE "courses_students"."student_id" = ?[0m  [["student_id", 298486374]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "awards" WHERE "awards"."student_id" = ?[0m  [["student_id", 980190962]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "courses" INNER JOIN "courses_students" ON "courses"."id" = "courses_students"."course_id" WHERE "courses_students"."student_id" = ?[0m  [["student_id", 980190962]]
+  Rendered students/index.html.erb within layouts/application (20.0ms)
+  Rendered application/_navigation.html.erb (0.0ms)
+Completed 200 OK in 130ms (Views: 6.1ms | ActiveRecord: 10.0ms)
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------------------------------
+CoursesControllerTest: test_should_create_course
+------------------------------------------------
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "courses"[0m
+Started POST "/courses" for 127.0.0.1 at 2018-03-31 19:49:15 +0200
+Processing by CoursesController#create as HTML
+  Parameters: {"course"=>{"name"=>"MyString"}}
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (30.0ms)[0m  [1m[32mINSERT INTO "courses" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "MyString"], ["created_at", "2018-03-31 17:49:15.232626"], ["updated_at", "2018-03-31 17:49:15.232626"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/courses/980190963
+Completed 302 Found in 40ms (ActiveRecord: 30.0ms)
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "courses"[0m
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" ORDER BY "courses"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (10.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------
+CoursesControllerTest: test_should_get_index
+--------------------------------------------
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/courses" for 127.0.0.1 at 2018-03-31 19:49:15 +0200
+Processing by CoursesController#index as HTML
+  Rendering courses/index.html.erb within layouts/application
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  [1m[35m (20.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "students" INNER JOIN "courses_students" ON "students"."id" = "courses_students"."student_id" WHERE "courses_students"."course_id" = ?[0m  [["course_id", 298486374]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "students" INNER JOIN "courses_students" ON "students"."id" = "courses_students"."student_id" WHERE "courses_students"."course_id" = ?[0m  [["course_id", 980190962]]
+  Rendered courses/index.html.erb within layouts/application (20.0ms)
+  Rendered application/_navigation.html.erb (0.0ms)
+Completed 200 OK in 200ms (Views: 92.5ms | ActiveRecord: 20.0ms)
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------------------------
+CoursesControllerTest: test_should_get_new
+------------------------------------------
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/courses/new" for 127.0.0.1 at 2018-03-31 19:49:15 +0200
+Processing by CoursesController#new as HTML
+  Rendering courses/new.html.erb within layouts/application
+  Rendered courses/_form.html.erb (0.0ms)
+  Rendered courses/new.html.erb within layouts/application (80.0ms)
+  Rendered application/_navigation.html.erb (0.0ms)
+Completed 200 OK in 150ms (Views: 83.7ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+----------------------------------------------
+CoursesControllerTest: test_should_show_course
+----------------------------------------------
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/courses/980190962" for 127.0.0.1 at 2018-03-31 19:49:15 +0200
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering courses/show.html.erb within layouts/application
+  Rendered courses/show.html.erb within layouts/application (0.0ms)
+  Rendered application/_navigation.html.erb (0.0ms)
+Completed 200 OK in 60ms (Views: 5.0ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+-------------------------------------------
+CoursesControllerTest: test_should_get_edit
+-------------------------------------------
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/courses/980190962/edit" for 127.0.0.1 at 2018-03-31 19:49:15 +0200
+Processing by CoursesController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering courses/edit.html.erb within layouts/application
+  Rendered courses/_form.html.erb (0.0ms)
+  Rendered courses/edit.html.erb within layouts/application (0.0ms)
+  Rendered application/_navigation.html.erb (0.0ms)
+Completed 200 OK in 70ms (Views: 7.7ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+-------------------------------------------------
+CoursesControllerTest: test_should_destroy_course
+-------------------------------------------------
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "courses"[0m
+Started DELETE "/courses/980190962" for 127.0.0.1 at 2018-03-31 19:49:15 +0200
+Processing by CoursesController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[31mDELETE FROM "courses_students" WHERE "courses_students"."course_id" = ?[0m  [["course_id", 980190962]]
+  [1m[35mSQL (10.0ms)[0m  [1m[31mDELETE FROM "courses" WHERE "courses"."id" = ?[0m  [["id", 980190962]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/courses
+Completed 302 Found in 10ms (ActiveRecord: 10.0ms)
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "courses"[0m
+  [1m[35m (10.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+------------------------------------------------
+CoursesControllerTest: test_should_update_course
+------------------------------------------------
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started PATCH "/courses/980190962" for 127.0.0.1 at 2018-03-31 19:49:15 +0200
+Processing by CoursesController#update as HTML
+  Parameters: {"course"=>{"name"=>"MyString"}, "id"=>"980190962"}
+  [1m[36mCourse Load (0.0ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/courses/980190962
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
