@@ -21,6 +21,7 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'bcrypt', '~> 3.1.11'
 gem 'coffee-script-source', '1.8.0'
+gem 'bootstrap-sass'
 
 
 # Use CoffeeScript for .coffee assets and views

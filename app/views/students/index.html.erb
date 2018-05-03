@@ -1,24 +1,21 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Students</h1>
-
-<table>
+<table class="table table-striped">
   <thead>
-    <tr>
-      <th>Given name__</th>
-      <th>Middle name__</th>
-      <th>Family name__</th>
-      <th>Date of birth__</th>
-      <th>Grade point average__</th>
-      <th>Start date__</th>
-      <th>Awards__</th>
-      <th>Courses</th>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <th scope="col">Given name</th>
+    <th scope="col">Middle name</th>
+    <th scope="col">Family name</th>
+    <th scope="col">Date of birth</th>
+    <th scope="col">Grade point average</th>
+    <th scope="col">Start date</th>
+    <th scope="col">Awards</th>
+    <th scope="col">Courses</th>
+  </tr>
   </thead>
-
   <tbody>
-    <% @students.each do |student| %>
+  <% @students.each do |student| %>
       <tr>
         <td><%= student.given_name %></td>
         <td><%= student.middle_name %></td>
@@ -28,21 +25,27 @@
         <td><%= student.start_date %></td>
         <td><%= student.awards.count %></td>
         <td><%= student.courses.count %></td>
-        <td><%= link_to 'Show', student %></td>
-        <td><%= link_to 'Awards', student_awards_path(student) %></td>
-        <td><%= link_to 'Courses', courses_student_path(student) %></td>
+        <td><a <%= "href=#{"students/"}#{student.id}" %> type="button" class="btn btn-primary btn-sm" >Show</a></td>
+        <td><a <%= "href=#{student_awards_path(student)}" %> type="button" class="btn btn-primary btn-sm" >Awards</a></td>
+        <td><a <%= "href=#{courses_student_path(student)}" %> type="button" class="btn btn-primary btn-sm" >Courses</a></td>
         <% if current_user %>
-            <td><%= link_to 'Edit', edit_student_path(student) %></td>
-            <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><a <%= "href=#{edit_student_path(student)}" %> type="button" class="btn btn-primary btn-sm" >Edit</a></td>
+            <td> <a class="btn btn-primary btn-sm" id="Delete" data-confirm="Are you sure?" data-method="delete" <%= "href=#{"students/"}#{student.id}" %> rel="nofollow">Delete</a> <td>
         <% end %>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 
 
+
+<br></br>
 <% if current_user %>
-<%= link_to 'New Student', new_student_path %>
+
+    <a <%= "href=#{new_student_path}" %> class="btn btn-primary btn-lg active" role="button" aria-pressed="true">New Student</a>
+
+<% else %>
+    <button type="button" class="btn btn-secondary btn-lg" disabled>New Student</button>
 <% end %>
 <br></br>
 

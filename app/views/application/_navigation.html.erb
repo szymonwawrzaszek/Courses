@@ -1,4 +1,18 @@
 <p>
+  <a <%= "href=#{students_url}" %> class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Students</a>
+  <a <%= "href=#{courses_url}" %> class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Courses</a>
+  <% if current_user %>
+      <button type="button" class="btn btn-secondary btn-lg" id="Logged_as" disabled>Logged in as <%= current_user.email %></button>
+      <a <%= "href=#{logout_path}" %> class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Log Out</a>
+  <% else %>
+      <a <%= "href=#{signup_path}" %> class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Sign Up</a>
+      <a <%= "href=#{login_path}" %> class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Log In</a>
+  <% end %>
+</p>
+<hr><hr/>
+
+<!--
+<p>
   <%= link_to "Students", students_url %> |
   <%= link_to "Courses", courses_url %> |
   <% if current_user %>
@@ -10,3 +24,4 @@
   <% end %>
 </p>
 <hr><hr/>
+-->
